@@ -1,0 +1,21 @@
+{
+    "name": "Healthy",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9104f28baed89644286c65222185ea59",
+        "GUID:30c2c0bc779c57a419f93656564ababf",
+        "GUID:116d4f7e6b26eaa4da4bed394e06c9ea",
+        "GUID:29492541a59d04a81b47a7f225e8a22d",
+        "GUID:14165214884ae4a619bfb290f28194a7",
+        "GUID:793fca09c7ea037478f3634361df00da"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
