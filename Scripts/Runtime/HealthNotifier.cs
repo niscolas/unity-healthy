@@ -30,7 +30,7 @@ namespace niscolas.Healthy
         {
             foreach (HealthComparer comparer in _comparers)
             {
-                comparer.TryExecute(healthWithHistory.Item2, _healthSystem.MaxHealth);
+                comparer.Execute(healthWithHistory.Item2, _healthSystem.MaxHealth);
             }
         }
     }

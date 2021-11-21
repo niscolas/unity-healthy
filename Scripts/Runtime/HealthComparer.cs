@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace niscolas.Healthy
 {
     [Serializable]
-    public struct HealthComparer
+    public class HealthComparer
     {
         [HideLabel, HideReferenceObjectPicker, InlineProperty, SerializeField]
         private FloatComparisons _comparisons;
@@ -23,7 +23,7 @@ namespace niscolas.Healthy
         [ReadOnly, SerializeField]
         private bool _executedLastTime;
 
-        public void TryExecute(float newValue, float maxValue)
+        public void Execute(float newValue, float maxValue)
         {
             float currentRatio = newValue / maxValue;
             if (_comparisons.CompareAll(currentRatio))
