@@ -14,6 +14,9 @@ namespace niscolas.Healthy
         [SerializeField]
         private FloatReference _health;
 
+        [SerializeField]
+        private BoolReference _canBeDamaged = new BoolReference(true);
+
         [FoldoutGroup(EventsLabel)]
         [SerializeField]
         private UnityEvent<float> _valueChanged;
@@ -61,13 +64,13 @@ namespace niscolas.Healthy
         }
 
         public float MaxHealth { get; private set; }
-        
+
         private float _previousHealth;
 
-        protected virtual void Awake()
+        protected override void Awake()
         {
             base.Awake();
-            
+
             MaxHealth = HealthValue;
             _previousHealth = MaxHealth;
         }
@@ -80,6 +83,11 @@ namespace niscolas.Healthy
 
         public void TakeDamage(float rawValue)
         {
+            if (!_canBeDamaged.Value || Mathf.Approximately(rawValue, 0))
+            {
+                return;
+            }
+
             HealthValue -= rawValue;
 
             NotifyDamageTaken();
