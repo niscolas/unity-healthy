@@ -2,7 +2,6 @@
 using niscolas.UnityUtils.UnityAtoms;
 using UnityAtoms;
 using UnityEngine;
-using UnityUtils;
 
 namespace niscolas.Healthy.Atoms
 {

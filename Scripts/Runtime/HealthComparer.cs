@@ -1,5 +1,5 @@
 ﻿using System;
-using niscolas.UnityAtomsUtils;
+using niscolas.UnityUtils.UnityAtoms;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;

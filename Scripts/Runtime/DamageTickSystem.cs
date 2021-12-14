@@ -1,9 +1,9 @@
 ﻿using niscolas.OdinCompositeAttributes;
 using niscolas.UnityUtils.Extras;
+using niscolas.UnityUtils.UnityAtoms;
 using Sirenix.OdinInspector;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
-using UnityUtils;
 
 namespace niscolas.Healthy
 {
