@@ -1,8 +1,14 @@
-﻿namespace niscolas.Healthy
+﻿using System;
+using UnityAtoms.BaseAtoms;
+
+namespace niscolas.Healthy
 {
     public interface IHealable
     {
-        void Heal(float rawValue);
+        public event Action<float> Healed;
+        public event Action<FloatPair> HealedWithHistory;
+
+        void HealRaw(float value);
         void HealRelative(float ratio);
     }
 }
