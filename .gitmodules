@@ -1,0 +1,3 @@
+[submodule "Assets/Plugins/UnityUtils.Core"]
+	path = Assets/Plugins/UnityUtils.Core
+	url = https://github.com/niscolas/unity-utils-core.git
