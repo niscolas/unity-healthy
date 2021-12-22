@@ -4,6 +4,7 @@
   "displayName": "Healthy",
   "unity": "2019.1",
   "dependencies": {
-    "com.niscolas.unity-utils-core": "0.1.0"
+      "com.unity-atoms.unity-atoms-core": "4.4.3",
+      "com.unity-atoms.unity-atoms-base-atoms": "4.4.3"
   }
 }
