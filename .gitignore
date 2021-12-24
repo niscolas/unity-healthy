@@ -72,3 +72,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 /artifacts
+
+**/Sirenix/Assemblies
+**/Sirenix/OdinInspector
+!*/Sirenix.OdinInspector.Attributes.dll
