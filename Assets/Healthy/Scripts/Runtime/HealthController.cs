@@ -1,66 +1,31 @@
 ﻿using System;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
-namespace niscolas.Healthy
+namespace Healthy
 {
     public class HealthController
     {
-        private readonly IHealth _health;
-        private readonly Action<float> _setCurrentHealth;
+        private IHealth _humbleHealth;
+        private FloatPair _history = new FloatPair();
 
-        public HealthController(
-            IHealth health,
-            Action<float> setCurrentHealth)
+        public HealthController(IHealth health)
         {
-            _health = health;
-            _setCurrentHealth = setCurrentHealth;
-        }
-
-        public void TakeRelativeDamage(
-            float ratio,
-            Action<float> damageTakenCallback = null,
-            Action deathCallback = null)
-        {
-            float rawDamage = _health.Max * ratio;
-            TakeRawDamage(rawDamage, damageTakenCallback, deathCallback);
-        }
-
-        public void TakeRawDamage(
-            float value,
-            Action<float> damageTakenCallback = null,
-            Action deathCallback = null)
-        {
-            value = Mathf.Abs(value);
-
-            if (_health.IsInvulnerable || !CheckIsSignificantHealthDelta(value))
-            {
-                return;
-            }
-
-            _setCurrentHealth(_health.Current - value);
-
-            damageTakenCallback?.Invoke(_health.Current);
-
-            if (_health.Current > 0)
-            {
-                return;
-            }
-
-            deathCallback?.Invoke();
+            _humbleHealth = health;
         }
 
         public void HealRelative(
             float ratio,
-            Action<float> healedCallback = null,
+            Action<FloatPair> healedCallback = null,
             Action revivedCallback = null)
         {
-            float rawHeal = _health.Max * ratio;
+            float rawHeal = _humbleHealth.Max * ratio;
             HealRaw(rawHeal, healedCallback, revivedCallback);
         }
 
         public void HealRaw(
             float value,
-            Action<float> healedCallback = null,
+            Action<FloatPair> healedCallback = null,
             Action revivedCallback = null)
         {
             value = Mathf.Abs(value);
@@ -70,12 +35,8 @@ namespace niscolas.Healthy
                 return;
             }
 
-            _setCurrentHealth(
-                Mathf.Min(
-                    _health.Current + value,
-                    _health.Max));
-
-            healedCallback?.Invoke(_health.Current);
+            SetCurrent(_humbleHealth.Current + value);
+            healedCallback?.Invoke(_history);
 
             if (CheckIsBeingRevived())
             {
@@ -83,14 +44,63 @@ namespace niscolas.Healthy
             }
         }
 
+        public void TakeRelativeDamage(
+            float ratio,
+            Action<FloatPair> damageTakenCallback = null,
+            Action deathCallback = null)
+        {
+            float rawDamage = _humbleHealth.Max * ratio;
+            TakeRawDamage(rawDamage, damageTakenCallback, deathCallback);
+        }
+
+        public void TakeRawDamage(
+            float value,
+            Action<FloatPair> damageTakenCallback = null,
+            Action deathCallback = null)
+        {
+            value = Mathf.Abs(value);
+
+            if (_humbleHealth.IsInvulnerable || !CheckIsSignificantHealthDelta(value))
+            {
+                return;
+            }
+
+            SetCurrent(_humbleHealth.Current - value);
+            OnDamaged(damageTakenCallback);
+
+            if (_humbleHealth.Current > 0)
+            {
+                return;
+            }
+
+            OnDeath(deathCallback);
+        }
+
         private static bool CheckIsSignificantHealthDelta(float healthDelta)
         {
             return !Mathf.Approximately(healthDelta, 0);
         }
 
+        private static void OnDeath(Action callback)
+        {
+            callback?.Invoke();
+        }
+
         private bool CheckIsBeingRevived()
         {
-            return _health.Current <= 0;
+            return _humbleHealth.Current <= 0;
+        }
+
+        private void OnDamaged(Action<FloatPair> callback)
+        {
+            callback?.Invoke(_history);
+        }
+
+        private void SetCurrent(float value)
+        {
+            _history.Item2 = value;
+            _humbleHealth.Current = Mathf.Clamp(value, _humbleHealth.Min, _humbleHealth.Max);
+            _history.Item1 = _humbleHealth.Current;
         }
     }
 }

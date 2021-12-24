@@ -1,8 +1,7 @@
 {
     "name": "Healthy",
-    "rootNamespace": "niscolas.Healthy",
+    "rootNamespace": "Healthy",
     "references": [
-        "GUID:53b64e632e005aa49b5ceae6a34adc8a",
         "GUID:29492541a59d04a81b47a7f225e8a22d",
         "GUID:14165214884ae4a619bfb290f28194a7",
         "GUID:9104f28baed89644286c65222185ea59"

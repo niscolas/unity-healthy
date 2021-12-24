@@ -5,14 +5,20 @@ using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace niscolas.Healthy
+namespace Healthy
 {
-    public class Health : CachedMonoBehaviour, IDamageable, IHealable, IHealth
+    public class HealthComponent : CachedMonoBehaviour, IHealth, IHealthEvents
     {
         private const string EventsLabel = "Events";
 
         [SerializeField]
-        private FloatReference _health;
+        private FloatReference _current = new FloatReference(100);
+
+        [SerializeField]
+        private FloatReference _max = new FloatReference(100);
+
+        [SerializeField]
+        private FloatReference _min = new FloatReference(0);
 
         [SerializeField]
         private BoolReference _isInvulnerable = new BoolReference(true);
@@ -49,43 +55,32 @@ namespace niscolas.Healthy
         [SerializeField]
         private UnityEvent _died;
 
-        public event Action<float> DamageTaken;
-        public event Action<FloatPair> DamageTakenWithHistory;
+        public event Action<float> Damaged;
+        public event Action<FloatPair> DamagedWithHistory;
         public event Action Died;
         public event Action<float> Healed;
         public event Action<FloatPair> HealedWithHistory;
         public event Action Revived;
-        public event Action<float> ValueChanged;
-        public event Action<FloatPair> ValueChangedWithHistory;
 
         public float Current
         {
-            get => _health.Value;
-            set
-            {
-                _previousHealth = _health.Value;
-                _health.Value = value;
-            }
+            get => _current;
+            set => _current.Value = value;
         }
 
         public bool IsInvulnerable => _isInvulnerable.Value;
 
-        public float Max { get; private set; }
+        public float Max => _max;
+
+        public float Min => _min;
 
         private HealthController _controller;
-
-        private float _previousHealth;
 
         protected override void Awake()
         {
             base.Awake();
 
-            _controller = new HealthController(
-                this,
-                newHealthValue => Current = newHealthValue);
-
-            Max = Current;
-            _previousHealth = Max;
+            _controller = new HealthController(this);
         }
 
         public void HealRaw(float value)
@@ -100,28 +95,20 @@ namespace niscolas.Healthy
 
         public void TakeRawDamage(float value)
         {
-            _controller.TakeRelativeDamage(value, NotifyDamageTaken, NotifyDeath);
+            _controller.TakeRelativeDamage(value, NotifyDamaged, NotifyDeath);
         }
 
         public void TakeRelativeDamage(float ratio)
         {
-            _controller.TakeRelativeDamage(ratio, NotifyDamageTaken, NotifyDeath);
+            _controller.TakeRelativeDamage(ratio, NotifyDamaged, NotifyDeath);
         }
 
-        private FloatPair GetHealthHistory()
+        private void NotifyDamaged(FloatPair history)
         {
-            return new FloatPair {Item1 = _previousHealth, Item2 = Current};
-        }
-
-        private void NotifyDamageTaken(float current)
-        {
-            FloatPair healthHistory = GetHealthHistory();
-            NotifyValueChanged(current, healthHistory);
-
-            DamageTaken?.Invoke(current);
-            DamageTakenWithHistory?.Invoke(healthHistory);
-            _damageTaken?.Invoke(current);
-            _damageTakenWithHistory?.Invoke(healthHistory);
+            Damaged?.Invoke(history.Item1);
+            _damageTaken?.Invoke(history.Item1);
+            DamagedWithHistory?.Invoke(history);
+            _damageTakenWithHistory?.Invoke(history);
         }
 
         private void NotifyDeath()
@@ -130,29 +117,18 @@ namespace niscolas.Healthy
             _died?.Invoke();
         }
 
-        private void NotifyHealed(float current)
+        private void NotifyHealed(FloatPair history)
         {
-            FloatPair healthHistory = GetHealthHistory();
-            NotifyValueChanged(current, healthHistory);
-
-            Healed?.Invoke(current);
-            HealedWithHistory?.Invoke(healthHistory);
-            _healed?.Invoke(current);
-            _healedWithHistory?.Invoke(healthHistory);
+            Healed?.Invoke(history.Item1);
+            _healed?.Invoke(history.Item1);
+            HealedWithHistory?.Invoke(history);
+            _healedWithHistory?.Invoke(history);
         }
 
         private void NotifyRevived()
         {
             Revived?.Invoke();
             _revived?.Invoke();
-        }
-
-        private void NotifyValueChanged(float current, FloatPair healthHistory)
-        {
-            ValueChanged?.Invoke(current);
-            ValueChangedWithHistory?.Invoke(healthHistory);
-            _valueChanged?.Invoke(current);
-            _valueChangedWithHistory?.Invoke(healthHistory);
         }
     }
 }

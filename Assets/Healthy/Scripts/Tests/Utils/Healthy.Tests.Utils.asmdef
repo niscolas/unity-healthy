@@ -1,0 +1,16 @@
+{
+    "name": "Healthy.Tests.Utils",
+    "rootNamespace": "Healthy.Tests.Utils",
+    "references": [
+        "GUID:e24424f28b8f12d46ab0187ccc42a163"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
