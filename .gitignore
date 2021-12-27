@@ -73,6 +73,8 @@ crashlytics-build.properties
 
 /artifacts
 
-**/Sirenix/Assemblies
-**/Sirenix/OdinInspector
-!*/Sirenix.OdinInspector.Attributes.dll
+# Odin Inspector
+**/*/Odin Inspector*
+!**/*/OdinInspector.Attributes.dll
+# Don't ignore the 
+**/*/Sirenix
