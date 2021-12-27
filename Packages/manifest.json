@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.niscolas.odin-inspector-attributes": "https://github.com/niscolas/odin-inspector-attributes.git",
     "com.niscolas.unity-utils-core": "https://github.com/niscolas/unity-utils-core.git",
     "com.unity-atoms.unity-atoms-base-atoms": "4.4.3",
     "com.unity-atoms.unity-atoms-core": "4.4.3",

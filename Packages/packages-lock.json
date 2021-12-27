@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.niscolas.odin-inspector-attributes": {
+      "version": "https://github.com/niscolas/odin-inspector-attributes.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d0bef6e3d9f848f0cadef65e120eafce064f1696"
+    },
     "com.niscolas.unity-utils-core": {
       "version": "https://github.com/niscolas/unity-utils-core.git",
       "depth": 0,
