@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "35f504eb66d10a26c9b4fa57da9f5fddde9ef44e"
+      "hash": "bbad640af57d359294c0349410e96024a209ff04"
     },
     "com.unity-atoms.unity-atoms-base-atoms": {
       "version": "4.4.3",
