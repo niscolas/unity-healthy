@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "d0bef6e3d9f848f0cadef65e120eafce064f1696"
+      "hash": "2274ca1071b49f2f920a07f237b252db8d7da46c"
     },
     "com.niscolas.unity-utils-core": {
       "version": "https://github.com/niscolas/unity-utils-core.git",
