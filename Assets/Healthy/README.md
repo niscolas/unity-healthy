@@ -18,5 +18,5 @@ https://github.com/niscolas/unity-healthy.git?path=/Assets/Healthy
 5. Click on the `Add` button
 
 ### :chains: Dependencies
-- [:hammer: Odin Inspector Attributes DLL](https://discord.com/channels/355444042009673728/355817720182341632/898236644270964787)
+- [:hammer: OdinInspectorAttributes](https://github.com/niscolas/odin-inspector-attributes)
 - [:zap: UnityUtils.Core](https://github.com/niscolas/unity-utils-core)
