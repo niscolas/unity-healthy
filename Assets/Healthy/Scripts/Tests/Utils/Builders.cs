@@ -2,6 +2,6 @@
 {
     public static class A
     {
-        public static HealthMockBuilder HealthMock => new HealthMockBuilder();
+        public static HealthBuilder Health => new HealthBuilder();
     }
 }

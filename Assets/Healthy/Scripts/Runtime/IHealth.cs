@@ -1,15 +1,19 @@
-﻿namespace Healthy
-{
-    public interface IHealth
-    {
-        float Current { get; set; }
-        bool IsInvulnerable { get; }
-        float Max { get; }
-        float Min { get; }
+﻿using System;
 
-        public void HealRelative(float ratio);
-        public void HealRaw(float value);
-        public void TakeRelativeDamage(float ratio);
-        public void TakeRawDamage(float value);
+namespace Healthy
+{
+    public interface IHealth : IHealthData
+    {
+        void Heal(
+            float healValue,
+            object instigator = null,
+            Action<(float, float)> healedWithHistoryCallback = null,
+            Action revivedCallback = null);
+
+        void TakeDamage(
+            float damageValue,
+            object instigator = null,
+            Action<(float, float)> damageTakenWithHistoryCallback = null,
+            Action deathCallback = null);
     }
 }

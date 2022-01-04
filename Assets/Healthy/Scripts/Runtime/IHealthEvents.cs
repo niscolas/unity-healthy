@@ -1,15 +1,16 @@
 ﻿using System;
-using UnityAtoms.BaseAtoms;
 
 namespace Healthy
 {
     public interface IHealthEvents
     {
-        public event Action<float> Damaged;
-        public event Action<FloatPair> DamagedWithHistory;
-        public event Action Died;
-        public event Action<float> Healed;
-        public event Action<FloatPair> HealedWithHistory;
-        public event Action Revived;
+        event Action<float> DamageTaken;
+        event Action<(float, float)> DamageTakenWithHistory;
+        event Action Died;
+        event Action<float> Healed;
+        event Action<(float, float)> HealedWithHistory;
+        event Action Revived;
+        event Action<float> ValueChanged;
+        event Action<(float, float)> ValueChangedWithHistory;
     }
 }
