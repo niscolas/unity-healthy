@@ -2,8 +2,18 @@
 
 namespace Healthy
 {
-    public interface IHealth : IHealthData
+    public interface IHealth
     {
+        bool CanHeal { get; set; }
+
+        bool CanTakeDamage { get; set; }
+
+        float Current { get; set; }
+
+        float Max { get; set; }
+
+        float Min { get; set; }
+
         void Heal(
             float healValue,
             object instigator = null,

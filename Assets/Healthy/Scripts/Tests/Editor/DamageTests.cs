@@ -12,14 +12,14 @@ namespace Healthy.Tests.Editor
         public void TakeDamage_DynamicInitialHealth_DynamicDamageRatio_CurrentShouldEqualExpected(
             float initial, float damageRatio, float expected)
         {
-            Health health = A.Health
+            HealthProxy healthController = A.HealthProxy
                 .WithMax(initial)
                 .WithCurrent(initial)
                 .WhichCanTakeDamage();
 
-            health.TakeDamage(initial * damageRatio);
+            healthController.TakeDamage(initial * damageRatio);
 
-            health.Current.Should().Be(expected);
+            healthController.Current.Should().Be(expected);
         }
 
         [TestCase(10, 3, 7)]
@@ -27,14 +27,14 @@ namespace Healthy.Tests.Editor
         public void TakeDamage_DynamicInitialHealth_DynamicDamageValue_CurrentShouldEqualExpected(
             float initial, float rawDamage, float expected)
         {
-            Health health = A.Health
+            HealthProxy healthController = A.HealthProxy
                 .WithMax(initial)
                 .WithCurrent(initial)
                 .WhichCanTakeDamage();
 
-            health.TakeDamage(rawDamage);
+            healthController.TakeDamage(rawDamage);
 
-            health.Current.Should().Be(expected);
+            healthController.Current.Should().Be(expected);
         }
 
         [TestCase(100, 1)]
@@ -43,15 +43,15 @@ namespace Healthy.Tests.Editor
         public void TakeDamage_DynamicInitialHealth_DynamicDamageRatio_CurrentShouldEqualMin(
             float initial, float damageRatio, float min = 0)
         {
-            Health health = A.Health
+            HealthProxy healthController = A.HealthProxy
                 .WithMax(initial)
                 .WithMin(min)
                 .WithCurrent(initial)
                 .WhichCanTakeDamage();
 
-            health.TakeDamage(initial * damageRatio);
+            healthController.TakeDamage(initial * damageRatio);
 
-            health.Current.Should().Be(min);
+            healthController.Current.Should().Be(min);
         }
     }
 }

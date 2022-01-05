@@ -98,34 +98,34 @@ namespace Healthy
             set => _min.Value = value;
         }
 
-        private Health _health;
+        private HealthController _healthController;
 
         protected override void Awake()
         {
             base.Awake();
 
-            _health = new Health(this);
+            _healthController = new HealthController(this);
 
-            _health.DamageTaken += OnDamageTaken;
-            _health.DamageTakenWithHistory += OnDamageTakenWithHistory;
-            _health.Died += OnDied;
-            _health.Healed += OnHealed;
-            _health.HealedWithHistory += OnHealedWithHistory;
-            _health.Revived += OnRevived;
-            _health.ValueChanged += OnValueChanged;
-            _health.ValueChangedWithHistory += OnValueChangedWithHistory;
+            _healthController.DamageTaken += OnDamageTaken;
+            _healthController.DamageTakenWithHistory += OnDamageTakenWithHistory;
+            _healthController.Died += OnDied;
+            _healthController.Healed += OnHealed;
+            _healthController.HealedWithHistory += OnHealedWithHistory;
+            _healthController.Revived += OnRevived;
+            _healthController.ValueChanged += OnValueChanged;
+            _healthController.ValueChangedWithHistory += OnValueChangedWithHistory;
         }
 
         private void OnDestroy()
         {
-            _health.DamageTaken -= OnDamageTaken;
-            _health.DamageTakenWithHistory -= OnDamageTakenWithHistory;
-            _health.Died -= OnDied;
-            _health.Healed -= OnHealed;
-            _health.HealedWithHistory -= OnHealedWithHistory;
-            _health.Revived -= OnRevived;
-            _health.ValueChanged -= OnValueChanged;
-            _health.ValueChangedWithHistory -= OnValueChangedWithHistory;
+            _healthController.DamageTaken -= OnDamageTaken;
+            _healthController.DamageTakenWithHistory -= OnDamageTakenWithHistory;
+            _healthController.Died -= OnDied;
+            _healthController.Healed -= OnHealed;
+            _healthController.HealedWithHistory -= OnHealedWithHistory;
+            _healthController.Revived -= OnRevived;
+            _healthController.ValueChanged -= OnValueChanged;
+            _healthController.ValueChangedWithHistory -= OnValueChangedWithHistory;
         }
 
         public void Heal(
@@ -134,7 +134,7 @@ namespace Healthy
             Action<(float, float)> healedWithHistoryCallback = null,
             Action revivedCallback = null)
         {
-            _health.Heal(healValue, instigator, healedWithHistoryCallback, revivedCallback);
+            _healthController.Heal(healValue, instigator, healedWithHistoryCallback, revivedCallback);
         }
 
         public void TakeDamage(
@@ -143,7 +143,7 @@ namespace Healthy
             Action<(float, float)> damageTakenWithHistoryCallback = null,
             Action deathCallback = null)
         {
-            _health.TakeDamage(damageValue, instigator, damageTakenWithHistoryCallback, deathCallback);
+            _healthController.TakeDamage(damageValue, instigator, damageTakenWithHistoryCallback, deathCallback);
         }
 
         private void OnDamageTaken(float value)

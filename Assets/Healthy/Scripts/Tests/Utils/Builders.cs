@@ -2,6 +2,6 @@
 {
     public static class A
     {
-        public static HealthBuilder Health => new HealthBuilder();
+        public static HealthProxyBuilder HealthProxy => new HealthProxyBuilder();
     }
 }

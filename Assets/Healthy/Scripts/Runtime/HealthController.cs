@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Healthy
 {
-    public class Health : IHealth, IHealthEvents
+    public class HealthController : IHealth, IHealthEvents
     {
         public event Action<float> DamageTaken;
         public event Action<(float, float)> DamageTakenWithHistory;
@@ -16,73 +16,48 @@ namespace Healthy
 
         public float Current
         {
-            get => _data.Current;
+            get => _humbleObject.Current;
             set
             {
                 _history.Item2 = value;
-                _data.Current = Mathf.Clamp(value, Min, Max);
-                _history.Item1 = _data.Current;
+                _humbleObject.Current = Mathf.Clamp(value, Min, Max);
+                _history.Item1 = _humbleObject.Current;
 
                 OnValueChanged();
             }
         }
 
-        float IHealthData.Current { get; set; }
-
         public bool CanHeal
         {
-            get => _data.CanHeal;
-            set => _data.CanHeal = value;
+            get => _humbleObject.CanHeal;
+            set => _humbleObject.CanHeal = value;
         }
-
-        bool IHealthData.CanHeal { get; set; }
 
         public bool CanTakeDamage
         {
-            get => _data.CanTakeDamage;
-            set => _data.CanTakeDamage = value;
+            get => _humbleObject.CanTakeDamage;
+            set => _humbleObject.CanTakeDamage = value;
         }
-
-        bool IHealthData.CanTakeDamage { get; set; }
 
         public float Max
         {
-            get => _data.Max;
-            set => _data.Max = value;
+            get => _humbleObject.Max;
+            set => _humbleObject.Max = value;
         }
-
-        float IHealthData.Max { get; set; }
 
         public float Min
         {
-            get => _data.Min;
-            set => _data.Min = value;
+            get => _humbleObject.Min;
+            set => _humbleObject.Min = value;
         }
 
-        float IHealthData.Min { get; set; }
-
-        private readonly IHealthData _data;
+        private readonly IHealth _humbleObject;
 
         private (float, float) _history;
 
-        public Health()
+        public HealthController(IHealth humbleObject)
         {
-            _data = this;
-        }
-
-        public Health(IHealthData healthData)
-        {
-            _data = healthData;
-        }
-
-        public Health(float current, float max, float min = 0, bool canHeal = true, bool canTakeDamage = true)
-        {
-            _data = this;
-            Max = max;
-            Min = min;
-            CanHeal = canHeal;
-            CanTakeDamage = canTakeDamage;
-            Current = current;
+            _humbleObject = humbleObject;
         }
 
         public void Heal(
