@@ -4,10 +4,10 @@ using UnityEngine;
 namespace Healthy
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Health Debugger")]
-    public class HealthDebuggerMonoBehaviour : CachedMonoBehaviour
+    public class HealthDebuggerMB : CachedMB
     {
         [SerializeField]
-        private HealthMonoBehaviour _health;
+        private HealthMB _health;
 
         [SerializeField]
         private float _healValue = 1;
@@ -20,7 +20,7 @@ namespace Healthy
         {
             _health.Heal(_healValue);
         }
-        
+
         [ContextMenu(nameof(TakeDamage))]
         private void TakeDamage()
         {

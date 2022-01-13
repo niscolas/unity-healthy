@@ -1,7 +1,8 @@
 {
   "dependencies": {
+    "com.neuecc.unirx": "7.1.0",
     "com.niscolas.odin-inspector-attributes": "https://github.com/niscolas/odin-inspector-attributes.git",
-    "com.niscolas.unity-utils-core": "https://github.com/niscolas/unity-utils-core.git",
+    "com.niscolas.unity-utils.core": "https://github.com/niscolas/unity-utils-core.git",
     "com.unity-atoms.unity-atoms-base-atoms": "4.4.3",
     "com.unity-atoms.unity-atoms-core": "4.4.3",
     "com.unity.ide.rider": "3.0.7",
@@ -39,8 +40,7 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.neuecc.unirx": "7.1.0"
+    "com.unity.modules.xr": "1.0.0"
   },
   "scopedRegistries": [
     {

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 namespace Healthy
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Health")]
-    public class HealthMonoBehaviour : CachedMonoBehaviour, IHealth, IHealthEvents
+    public class HealthMB : CachedMB, IHealth, IHealthEvents
     {
         private const string EventsLabel = "Events";
 
