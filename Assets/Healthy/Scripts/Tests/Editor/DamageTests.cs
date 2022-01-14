@@ -12,7 +12,7 @@ namespace Healthy.Tests.Editor
         public void TakeDamage_DynamicInitialHealth_DynamicDamageRatio_CurrentShouldEqualExpected(
             float initial, float damageRatio, float expected)
         {
-            HealthProxy healthController = A.HealthProxy
+            HealthController healthController = A.HealthController
                 .WithMax(initial)
                 .WithCurrent(initial)
                 .WhichCanTakeDamage();
@@ -27,7 +27,7 @@ namespace Healthy.Tests.Editor
         public void TakeDamage_DynamicInitialHealth_DynamicDamageValue_CurrentShouldEqualExpected(
             float initial, float rawDamage, float expected)
         {
-            HealthProxy healthController = A.HealthProxy
+            HealthController healthController = A.HealthController
                 .WithMax(initial)
                 .WithCurrent(initial)
                 .WhichCanTakeDamage();
@@ -43,7 +43,7 @@ namespace Healthy.Tests.Editor
         public void TakeDamage_DynamicInitialHealth_DynamicDamageRatio_CurrentShouldEqualMin(
             float initial, float damageRatio, float min = 0)
         {
-            HealthProxy healthController = A.HealthProxy
+            HealthController healthController = A.HealthController
                 .WithMax(initial)
                 .WithMin(min)
                 .WithCurrent(initial)

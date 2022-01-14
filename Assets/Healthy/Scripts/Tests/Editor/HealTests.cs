@@ -12,7 +12,7 @@ namespace Healthy.Tests.Editor
         public void Heal_DynamicInitial_DynamicMax_DynamicHealRatio_CurrentShouldEqualExpected(
             float initial, float max, float healRatio, float expected)
         {
-            HealthProxy healthController = A.HealthProxy
+            HealthController healthController = A.HealthController
                 .WithMax(max)
                 .WithCurrent(initial)
                 .WhichCanHeal();
@@ -27,7 +27,7 @@ namespace Healthy.Tests.Editor
         public void Heal_DynamicInitial_DynamicMax_DynamicHeal_CurrentShouldEqualExpected(
             float initial, float max, float rawHeal, float expected)
         {
-            HealthProxy healthController = A.HealthProxy
+            HealthController healthController = A.HealthController
                 .WithMax(max)
                 .WithCurrent(initial)
                 .WhichCanHeal();
@@ -43,7 +43,7 @@ namespace Healthy.Tests.Editor
         public void Heal_DynamicInitial_DynamicMax_DynamicHealRatio_CurrentShouldEqualMax(
             float initial, float max, float healRatio)
         {
-            HealthProxy healthController = A.HealthProxy
+            HealthController healthController = A.HealthController
                 .WithMax(max)
                 .WithCurrent(initial)
                 .WhichCanHeal();

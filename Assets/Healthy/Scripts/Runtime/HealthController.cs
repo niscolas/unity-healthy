@@ -51,11 +51,11 @@ namespace Healthy
             set => _humbleObject.Min = value;
         }
 
-        private readonly IHealth _humbleObject;
+        private readonly IHealthData _humbleObject;
 
         private (float, float) _history;
 
-        public HealthController(IHealth humbleObject)
+        public HealthController(IHealthData humbleObject)
         {
             _humbleObject = humbleObject;
         }
