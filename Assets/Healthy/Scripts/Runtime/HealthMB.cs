@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Healthy
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Health")]
-    public class HealthMB : CachedMB, IHealth, IHealthEvents
+    public class HealthMB : CachedMB, IHealth
     {
         [SerializeField]
         private FloatReference _current = new FloatReference(100);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Healthy
 {
-    public class HealthController : IHealth, IHealthEvents
+    public class HealthController : IHealth
     {
         public event Action<float> DamageTaken;
         public event Action<(float, float)> DamageTakenWithHistory;
